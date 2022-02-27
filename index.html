@@ -2,22 +2,19 @@
 
 
 <body>
-
+    <h1>Add guest and message</h1>
     <div>
-        <form method="POST" action="/kirjautudu">
-            <div class = "form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" id="email" 
-                placeholder="enter email">
-            </div>
-            <div class = "form-group">
-                <label>Password</label>
-                <input type="pass" class="form-control" id="pass" 
-                placeholder="Password">
-            </div>
-            <button type="button" id=" button1">
-                Submit
-            </button>
+        <form method="post" action="/">
+                <label>Username</label>
+                <input type="text" name="User" value="Anonymous">
+
+                <label>Fname and Lname</label>
+                <input type="text" name="Name">
+
+                <label>Message</label>
+                <input type="text" name="Message">
+
+                <input type="submit" value="Submit">
         </form>
 
     </div>
@@ -26,7 +23,7 @@
         window.onload =event => {
             var nappi =document.getElementById("button1");
             nappi.addEventListener("click",()=>{
-                var email = document.getElementById("email").value;
+                var email = document.getElementById("user").value;
                 var pass = document.getElementById("pass").value;
                 console.log(email, pass);
 
