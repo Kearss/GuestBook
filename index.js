@@ -33,7 +33,6 @@ app.get('/guestbook', function (req, res){
         '<tr>'+
         '<td>'+data[i].Name+'</td>'+
         '<td>'+data[i].User+'</td>'+
-        '<td>'+data[i].Message+'</td>'+
         '</tr>';
     }
     res.send(result);
