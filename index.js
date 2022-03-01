@@ -18,15 +18,15 @@ app.get('/', function (req, res){
 });
 
 app.get('/guestbook', function (req, res){
-    res.sendFile(__dirname +'/public/guest.html');
+    res.sendFile(__dirname +'/clientview/guest.html');
 });
 
 app.get('/newmessage', function (req, res){
-    res.sendFile(__dirname +'/public/message.html');
+    res.sendFile(__dirname +'/clientview/message.html');
 });
 
 app.post('/newmessage', function (req, res){
-    var data = require('./public/Dataset.json')
+    var data = require('./clientview/Dataset.json')
     // creates a new Json object and adds it to a existing data variable
     data.push({
         "Username": req.body.Username,
