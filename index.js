@@ -11,23 +11,22 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Sisältö haetaan public-hakemistosta.
-app.use(express.static("./publicview"));
+app.use(express.static("./public"));
 
 app.get('/', function (req, res){
     res.sendFile(__dirname +'/index.html');
 });
 
 app.get('/guestbook', function (req, res){
-    res.sendFile(__dirname +'/publicview/guest.html');
+    res.sendFile(__dirname +'/public/guest.html');
 });
 
 app.get('/newmessage', function (req, res){
-    res.sendFile(__dirname +'/publicview/message.html');
+    res.sendFile(__dirname +'/public/message.html');
 });
 
 app.post('/newmessage', function (req, res){
-
-    var data = require('./publicview/Dataset.json')
+    var data = require('./public/Dataset.json')
     // creates a new Json object and adds it to a existing data variable
     data.push({
         "Username": req.body.Username,
@@ -37,18 +36,14 @@ app.post('/newmessage', function (req, res){
         });
     //converts Json in to string format 
     var jsonStr = JSON.stringify(data);
-    //writes data to file
-    fs.writeFile('Dataset.json', jsonStr,(err)=>{
-        if(err) throw err;
-        console.log('it\'s saved!');
+    // Kirjoitetaan data JSON tiedostoon.
+    fs.writeFile("public/Dataset.json", jsonStr, (err) => {
+        if (err) throw err;
+        console.log("...It is saved!");
     });
-    res.send("Saved the data to a file. Browse to the /guestbook to see the contents of the file");
+    // Esitetään haluttu data.
+    res.send("It is saved to a JSON file");
 });
-
-app.get('/ajaxmessage', function (req, res){
-    res.sendFile(__dirname +'/publicview/ajax.html');
-});
-
 
 app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
