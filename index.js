@@ -6,22 +6,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/', function (req, res){
-    res.sendFile(__dirname +'/index.html');
+    res.sendFile(__dirname +'/test.html');
 });
 
 app.get('/guestbook', function (req, res){
     var data = require('./Dataset.json')
-    var result= '<table border="1"><tr><th>username</th><th>Country</th><th>Message</th></tr>';
-    for (var i=0; i< data.length; i++){
-        result +=
-        '<tr>'+
-        '<td>'+data[i].Username +'</td>'+
-        '<td>'+data[i].Country+'</td>'+
-        '<td>'+data[i].Message+'</td>'+
-        '</tr>';
-    }
-    res.send(result); 
+    res.sendFile(__dirname +'/guest.html');
+
 });
+
 app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/message.html');
 });
