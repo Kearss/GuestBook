@@ -1,3 +1,4 @@
+const PORT = process.env.PORT || 8081;
 var express = require("express");
 var fs = require("fs");
 var app = express();
@@ -44,5 +45,5 @@ app.get('/ajaxmessage', function (req, res){
 
 
 app.listen(PORT, function(){
-    console.log('Example app listening on port 8081!');
+    console.log('Example app listening on port 8081!' + PORT);
 });
