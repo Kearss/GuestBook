@@ -11,7 +11,7 @@ app.get('/', function (req, res){
 
 app.get('/guestbook', function (req, res){
     var data = require('./Dataset.json')
-    var result= '<table border ="1"><tr><th>username</th><th>Country</th><th>Message</th></tr>';
+    var result= '<table border="1"><tr><th>username</th><th>Country</th><th>Message</th></tr>';
     for (var i=0; i< data.length; i++){
         result +=
         '<tr>'+
@@ -49,6 +49,7 @@ app.post('/newmessage', function (req, res){
 app.get('/ajaxmessage', function (req, res){
     res.sendFile(__dirname +'/ajax.html');
 });
+
 
 app.listen(8081, function(){
     console.log('Example app listening on port 8081!');
