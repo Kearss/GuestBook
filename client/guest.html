@@ -20,6 +20,19 @@
       </table>
         <script>
 
+            fetch("./Dataset.json")
+            .then(function(response){
+              return response.json();
+
+            })
+            .then(function(data){
+              for(var i=0; i<data.length; i++){
+                document.getElementById("myTable").innerHTML += myTable[i].Username;
+              }
+            })
+            .catch(function(err){
+              
+            });
       </script>
   </body>
 </html> 
