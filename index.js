@@ -43,6 +43,6 @@ app.get('/ajaxmessage', function (req, res){
 });
 
 
-app.listen(8081, function(){
+app.listen(PORT, function(){
     console.log('Example app listening on port 8081!');
 });
