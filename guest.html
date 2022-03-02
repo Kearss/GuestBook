@@ -12,7 +12,9 @@
     <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
     <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
       <h1>Messages!</h1>
-      <input type='button' value='Create Table from JSON' id='bt'>
+      <button type="button" id="button1" class="btn btn-primary">
+        load json
+      </button>
       <table class="table table-striped"id="myTable">
         <tr>
             <th>Username</th>
@@ -22,54 +24,29 @@
       </table>
         <script>
 
-$('#bt').click(function () {
-        $.getJSON("Dataset.json", function (data) {
+        var nappi = document.getElementById("button1");
 
-            var arrItems = [];      // THE ARRAY TO STORE JSON ITEMS.
-            $.each(data, function (index, value) {
-                arrItems.push(value);       // PUSH THE VALUES INSIDE THE ARRAY.
-            });
-
-            // EXTRACT VALUE FOR TABLE HEADER.
-            var col = [];
-            for (var i = 0; i < arrItems.length; i++) {
-                for (var key in arrItems[i]) {
-                    if (col.indexOf(key) === -1) {
-                        col.push(key);
+            // Lisätään nappiin kuuntelija, joka hakee kenttien tiedot klikattaessa
+            nappi.addEventListener("click", () => {
+                // Luodaan AJAX olio joka palauttaa vastauksensa status-kenttään     
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("status").innerHTML = this.responseText;
+                        console.log(this.responseText);
                     }
-                }
-            }
+                };
 
-            // CREATE DYNAMIC TABLE.
-            var table = document.createElement("table");
-
-            // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-
-            var tr = table.insertRow(-1);                   // TABLE ROW.
-
-            for (var i = 0; i < col.length; i++) {
-                var th = document.createElement("th");      // TABLE HEADER.
-                th.innerHTML = col[i];
-                tr.appendChild(th);
-            }
-
-            // ADD JSON DATA TO THE TABLE AS ROWS.
-            for (var i = 0; i < arrItems.length; i++) {
-
-                tr = table.insertRow(-1);
-
-                for (var j = 0; j < col.length; j++) {
-                    var tabCell = tr.insertCell(-1);
-                    tabCell.innerHTML = arrItems[i][col[j]];
-                }
-            }
-
-            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-            var divContainer = document.getElementById("showData");
-            divContainer.innerHTML = "";
-            divContainer.appendChild(table);
-        });
-    });
+                // Lähetetään AJAX pyyntö, tyyppiä POST osoitteeseen /kirjaudu
+                xmlhttp.open("POST", "/newmessage", true);
+                // Liitetään AJAX pyyntöön lomakkeen kenttien datat
+                xmlhttp.setRequestHeader(
+                    "Content-type",
+                    "application/x-www-form-urlencoded"
+                );
+                xmlhttp.send( Username + " " + Country);
+                document.getElementById("status").innerHTML =  Username + " " + Country
+            });
       </script>
   </body>
 </html> 
