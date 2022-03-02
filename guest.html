@@ -12,44 +12,30 @@
     <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
     <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
       <h1>Messages!</h1>
-      <button type="button" id="button1" class="btn btn-primary">
-        load json
-      </button>
       <table class="table table-striped"id="myTable">
         <tr>
             <th>Username</th>
             <th>Country</th>
             <th>Message</th>
         </tr>
+        <tbody id="list">
+
+        </tbody>
       </table>
         <script>
-
-        var nappi = document.getElementById("button1");
-
-            // Lisätään nappiin kuuntelija, joka hakee kenttien tiedot klikattaessa
-            nappi.addEventListener("click", () => {
-                var Username = document.getElementById("Username").value;
-                var Country = document.getElementById("Country").value;
-
-                // Luodaan AJAX olio joka palauttaa vastauksensa status-kenttään     
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("status").innerHTML = this.responseText;
-                        console.log(this.responseText);
-                    }
-                };
-
-                // Lähetetään AJAX pyyntö, tyyppiä POST osoitteeseen /kirjaudu
-                xmlhttp.open("POST", "/newmessage", true);
-                // Liitetään AJAX pyyntöön lomakkeen kenttien datat
-                xmlhttp.setRequestHeader(
-                    "Content-type",
-                    "application/x-www-form-urlencoded"
-                );
-                xmlhttp.send( Username + " " + Country);
-                document.getElementById("status").innerHTML =  Username + " " + Country
+          fetch('./Dataset.json')
+            .then(function(response){
+              return response.json();
+            })
+            .then(function(list){
+              for(var i=0; i>list.lenght; i++){
+                document.getElementById("list").innerHTML += list[i].Username + list[i].Country;
+              }
+            })
+            .catch(function(err){
+              console.log(err);
             });
+
       </script>
   </body>
 </html> 
