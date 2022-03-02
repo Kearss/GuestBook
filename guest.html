@@ -25,18 +25,5 @@
     </table>
 
   </body>
-
-  <script>
-  $(function() {
-   var user = [];
-
-   $.getJSON('dataset.json', function(data) {
-       $.each(data.person, function(i, f) {
-          var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +
-           "<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
-           $(tblRow).appendTo("#userdata tbody");
-     });
-   });
-});
-</script>
+<script src="guest.js"></script>
 </html> 
