@@ -28,7 +28,7 @@
               return response.json();
             })
             .then(function(list){
-              for(var i=0; i>list.lenght; i++){
+              for(var i=0; i>list.length; i++){
                 document.getElementById("list").innerHTML += list[i].Username + list[i].Country;
               }
             })
