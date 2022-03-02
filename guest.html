@@ -31,9 +31,9 @@
     $(function() {
 
 
-   var people = [];
+   var user = [];
 
-   $.getJSON('people.json', function(data) {
+   $.getJSON('Dataset.json', function(data) {
        $.each(data.person, function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +
            "<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
