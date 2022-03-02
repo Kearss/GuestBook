@@ -28,6 +28,9 @@
 
             // Lisätään nappiin kuuntelija, joka hakee kenttien tiedot klikattaessa
             nappi.addEventListener("click", () => {
+                var Username = document.getElementById("Username").value;
+                var Country = document.getElementById("Country").value;
+
                 // Luodaan AJAX olio joka palauttaa vastauksensa status-kenttään     
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
