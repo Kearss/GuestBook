@@ -17,6 +17,29 @@ app.get('/', function (req, res){
 app.get('/guestbook', function (req, res){
     res.sendFile(__dirname +'/guest.html');
 });
+app.get('/newmessage', function (req, res){
+    res.sendFile(__dirname +'/clientview/message.html');
+});
+
+app.post('/newmessage', function (req, res){
+    var data = require('./clientview/Dataset.json')
+    // creates a new Json object and adds it to a existing data variable
+    data.push({
+        "Username": req.body.Username,
+        "Country": req.body.Country,
+        "Message":req.body.Message,
+        "Date": new Date()
+        });
+    //converts Json in to string format 
+    var jsonStr = JSON.stringify(data);
+    // Kirjoitetaan data JSON tiedostoon.
+    fs.writeFile("public/Dataset.json", jsonStr, (err) => {
+        if (err) throw err;
+        console.log("...It is saved!");
+    });
+    // Esitetään haluttu data.
+    res.send("It is saved to a JSON file");
+});
 // Luodaan web-palvelin.
 app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
