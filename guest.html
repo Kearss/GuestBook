@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
 <h1>Make this page pretty with bootstrap or pure.css</h1>
-<a href="https://guestbookexcercise.herokuapp.com/">homepage</a>
+    <a href="https://guestbookexcercise.herokuapp.com/">homepage</a>
     <a href="https://guestbookexcercise.herokuapp.com/guestbook">Guestbook</a>
     <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
     <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
@@ -14,23 +14,20 @@
 
       <h1>Messages!</h1>
       <table class="table table-striped"id= "userdata">
-        <thead>
-          <th>Username</th>
-          <th>Country</th>
-          <th>Message</th>
-      </thead>
-      <tbody>
+            <thead>
+              <th>Username</th>
+              <th>Country</th>
+              <th>Message</th>
+          </thead>
+          <tbody>
 
-      </tbody>
- </table>
+          </tbody>
+    </table>
 
   </body>
 
   <script>
-
-    $(function() {
-
-
+  $(function() {
    var user = [];
 
    $.getJSON('Dataset.json', function(data) {
@@ -39,9 +36,7 @@
            "<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
            $(tblRow).appendTo("#userdata tbody");
      });
-
    });
-
 });
 </script>
 </html> 
