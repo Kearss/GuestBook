@@ -12,17 +12,16 @@ function LoadList() {
       }
     };
 }
-function myFunction(xml) {
-    var i;
+function myFunction(json) {
     //saatu xml tiedoston kutsu
-    var xmlDoc = xml.responseXML;
+    var xmlDoc = json.responseJson;
     // määrittelee talukon etukäteen.
     var table="<tr><th>Username</th><th>Country</th><th>Message</th></tr>";
     //heataan kaikki tiedot Show nimestä tagistä sisältö.
     var x = xmlDoc.getElementsByTagName("");
 
 
-    for (i = 0; i <x.length; i++) { 
+    for (var i = 0; i < x.length; i++) { 
         // tekee taulukon
         table += "<tr><td>" +
         //hakee talukolle jokaisen esityksen riville
