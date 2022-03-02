@@ -1,18 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+<h1>Make this page pretty with bootstrap or pure.css</h1>
+<a href="https://guestbookexcercise.herokuapp.com/">homepage</a>
+    <a href="https://guestbookexcercise.herokuapp.com/guestbook">Guestbook</a>
+    <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
+    <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
 
-<script>
+  <body>
+
+      <h1>Messages!</h1>
+      <table class="table table-striped"id= "userdata">
+        <thead>
+          <th>Username</th>
+          <th>Country</th>
+          <th>Message</th>
+      </thead>
+      <tbody>
+
+      </tbody>
+ </table>
+
+  </body>
+
+  <script>
 
     $(function() {
 
 
    var people = [];
 
-   $.getJSON('Dataset.json', function(data) {
+   $.getJSON('people.json', function(data) {
        $.each(data.person, function(i, f) {
-          var tblRow = "<tr>" + "<td>" + f.Username+ "</td>" +
+          var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +
            "<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
            $(tblRow).appendTo("#userdata tbody");
      });
@@ -21,25 +44,4 @@
 
 });
 </script>
-</head>
-
-<body>
-
-<div class="wrapper">
-<div class="profile">
-   <table id= "userdata" border="2">
-  <thead>
-            <th>Username</th>
-            <th>Country</th>
-            <th>Message</th>
-        </thead>
-      <tbody>
-
-       </tbody>
-   </table>
-
-</div>
-</div>
-
-</body>
-</html>
+</html> 
