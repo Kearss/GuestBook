@@ -22,19 +22,11 @@
 
         </tbody>
       </table>
-        <script type ="text/javascript">
-          fetch('./Dataset.json')
-            .then(function(response){
-              return response.json();
+        <script>
+          $.get('/Dataset.json')
+            .done(data =>{
+              console.log(data)
             })
-            .then(function(data){
-              for(var i=0; i>data.length; i++){
-                document.getElementById("list").innerHTML += data[i].Username + data[i].Country;
-              }
-            })
-            .catch(function(err){
-              console.log(err);
-            });
 
       </script>
   </body>
