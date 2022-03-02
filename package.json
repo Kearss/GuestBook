@@ -1,9 +1,8 @@
 {
   "name": "guestbook",
   "version": "1.0.0",
-  "description": "hheroku practice",
+  "description": "",
   "main": "index.js",
- 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
@@ -13,11 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/Kearsz/GuestBook.git"
   },
-  "author": "Kim Dinh",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Kearsz/GuestBook/issues"
   },
   "homepage": "https://github.com/Kearsz/GuestBook#readme"
-  
 }
