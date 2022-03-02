@@ -1,18 +1,16 @@
 {
   "name": "guestbook",
   "version": "1.0.0",
-  "description": "guestbook",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Kearsz/GuestBook.git"
   },
-  "keywords": [
-    "guestbook"
-  ],
   "author": "Kim Dinh",
   "license": "ISC",
   "bugs": {
