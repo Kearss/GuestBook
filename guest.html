@@ -27,26 +27,35 @@
   </body>
 
   <script>
-  $(function() {
-   var user = [];
+    
+      var getJSON = function(url, callback) {
 
-   $.getJSON('https://guestbookexcercise.herokuapp.com/dataset.json', function(data) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', "/dataset.json", true);
+      xhr.responseType = 'json';
+
+      xhr.onload = function() {
+
+          var status = xhr.status;
+
+          if (status == 200) {
+              callback(null, xhr.response);
+          } else {
+              callback(status);
+          }
+      };
+
+      xhr.send();
+      };
+  $(function() {
+
+   $.getJSON('/dataset.json', function(data) {
        $.each(data, function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +"<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
-           $(tblRow).appendTo(".table");
+           $(tblRow).appendTo(".table tbody");
      });
    });
 });
 </script>
-<script>
-  $.getJSON('https://guestbookexcercise.herokuapp.com/dataset.json', function(data) {
 
-      var text = `Date: ${data.Username}<br>
-                  Time: ${data.Country}<br>
-                  Unix time: ${data.Message}`
-
-
-      $(".mypanel").html(text);
-  });
-  </script>
 </html> 
