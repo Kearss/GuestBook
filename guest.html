@@ -39,11 +39,11 @@
 });
 </script>
 <script>
-  $.getJSON('http://time.jsontest.com', function(data) {
+  $.getJSON('/dataset.json', function(data) {
 
-      var text = `Date: ${data.date}<br>
-                  Time: ${data.time}<br>
-                  Unix time: ${data.milliseconds_since_epoch}`
+      var text = `Date: ${data.Username}<br>
+                  Time: ${data.Country}<br>
+                  Unix time: ${data.Message}`
 
 
       $(".mypanel").html(text);
