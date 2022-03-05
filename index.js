@@ -31,7 +31,7 @@ app.post('/newmessage', function (req, res){
         "Date": new Date()
         });
     //converts Json in to string format 
-    var jsonStr = JSON.stringify(data);
+    var jsonStr = JSON.parse(data);
     // Kirjoitetaan data JSON tiedostoon.
     fs.writeFile("dataset.json", jsonStr, (err) => {
         if (err) throw err;
