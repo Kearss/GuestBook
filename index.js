@@ -1,5 +1,5 @@
 // Määritellään palvelimelle portti.
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 3000;
 
 // Otetaan moduuleja käyttöön.
 var express = require("express");
