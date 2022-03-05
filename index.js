@@ -22,16 +22,16 @@ app.get('/newmessage', function (req, res){
 });
 
 app.post('/newmessage', function (req, res){
-    var data = require('./dataset.json')
+    var data = require("./dataset.json");
     // creates a new Json object and adds it to a existing data variable
     data.push({
         "Username": req.body.Username,
         "Country": req.body.Country,
-        "Message":req.body.Message,
-        "Date": new Date()
+        "Date": new Date(),
+        "Message":req.body.Message
         });
     //converts Json in to string format 
-    var jsonStr = JSON.parse(data);
+    var jsonStr = JSON.stringify(data);
     // Kirjoitetaan data JSON tiedostoon.
     fs.writeFile("dataset.json", jsonStr, (err) => {
         if (err) throw err;
