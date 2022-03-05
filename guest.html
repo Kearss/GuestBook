@@ -31,7 +31,7 @@
       var getJSON = function(url, callback) {
 
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'ttps://guestbookexcercise.herokuapp.com/dataset.json', true);
+      xhr.open('GET', "/dataset.json", true);
       xhr.responseType = 'json';
 
       xhr.onload = function() {
@@ -49,7 +49,7 @@
       };
   $(function() {
 
-   $.getJSON('https://guestbookexcercise.herokuapp.com/dataset.json', function(data) {
+   $.getJSON('/dataset.json', function(data) {
        $.each(data, function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +"<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
            $(tblRow).appendTo(".table tbody");
