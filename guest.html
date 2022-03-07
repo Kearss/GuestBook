@@ -28,15 +28,14 @@
 
   <script>
 
-  $(function() {
-
+  
    $.getJSON('../dataset.json', function(data) {
        $.each(data, function(i, f) {
           var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +"<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
            $(tblRow).appendTo(".table tbody");
      });
    });
-});
+
 </script>
 
 </html> 
