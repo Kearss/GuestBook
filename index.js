@@ -7,8 +7,6 @@ var app = express();
 var fs = require("fs");
 var bodyParser = require("body-parser");
 
-app.use(express.static("./public"));
-
 // Otetaan body-parser käyttöön express-sovelluksessa.
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -24,7 +22,7 @@ app.get('/newmessage', function (req, res){
 });
 
 app.post('/newmessage', function (req, res){
-    var data = require("./public/dataset.json");
+    var data = require("./dataset.json");
     // creates a new Json object and adds it to a existing data variable
     data.push({
         "Username": req.body.Username,
@@ -35,7 +33,7 @@ app.post('/newmessage', function (req, res){
     //converts Json in to string format 
     var jsonStr = JSON.stringify(data);
     // Kirjoitetaan data JSON tiedostoon.
-    fs.writeFile("public/dataset.json", jsonStr, (err) => {
+    fs.writeFile("dataset.json", jsonStr, (err) => {
         if (err) throw err;
         console.log("...It is saved!");
     });
