@@ -11,7 +11,7 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res){
-    res.render("page/index.html");
+    res.render("index.html");
 });
 
 app.get('/guestbook', function (req, res){
