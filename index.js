@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 // Guestbook Page
 app.get("/guestbook", (req, res) => {
   const table = makeTable;
-  res.render("guestbook", {table: table});
+  res.render("guest", {table: table});
 });
 
 // New Message Page
