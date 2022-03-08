@@ -15,18 +15,18 @@ const PORT = process.env.PORT || 8000;
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("pages/index.ejs");
+  res.render("index.ejs");
 });
 
 // Guestbook Page
 app.get("/guestbook", (req, res) => {
   const table = makeTable;
-  res.render("pages/guestbook", {table: table});
+  res.render("guestbook", {table: table});
 });
 
 // New Message Page
 app.get("/newmessage", (req, res) => {
-  res.render("pages/newmessage");
+  res.render("newmessage");
 });
 
 // New Ajax Message Page
