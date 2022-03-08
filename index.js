@@ -15,23 +15,23 @@ const PORT = process.env.PORT || 8000;
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("pages/index.ejs");
 });
 
 // Guestbook Page
 app.get("/guestbook", (req, res) => {
   const table = makeTable;
-  res.render("guest", {table: table});
+  res.render("pages/guestbook", {table: table});
 });
 
 // New Message Page
 app.get("/newmessage", (req, res) => {
-  res.render("newmessage");
+  res.render("pages/newmessage");
 });
 
 // New Ajax Message Page
 app.get("/ajaxmessage", (req, res) => {
-  res.render("ajaxmessage");
+  res.render("pages/ajaxmessage");
 });
 
 // POST route for Ajax Message Page

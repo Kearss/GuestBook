@@ -5,21 +5,22 @@
     "express": "^4.17.3"
   },
   "name": "guestbook",
+  "description": "Simple Guestbook application. Saves user's name, country, date, message, id.",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kearsz/GuestBook.git"
+    "url": "git+https://github.com/Konstanenonen/Guestbook.git"
   },
-  "author": "Kim Dinh",
+  "author": "Konsta Nenonen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kearsz/GuestBook/issues"
+    "url": "https://github.com/Konstanenonen/Guestbook/issues"
   },
-  "homepage": "https://github.com/Kearsz/GuestBook#readme"
+  "homepage": "https://github.com/Konstanenonen/Guestbook#readme"
 }
