@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kearsz/GuestBook.git"
+    "url": "git+https://github.com/Konstanenonen/Guestbook.git"
   },
-  "author": "Kim Dinh",
+  "author": "Konsta Nenonen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Kearsz/Guestbook/issues"
+    "url": "https://github.com/Konstanenonen/Guestbook/issues"
   },
-  "homepage": "https://github.com/Kearsz/Guestbook#readme"
+  "homepage": "https://github.com/Konstanenonen/Guestbook#readme"
 }
