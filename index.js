@@ -1,11 +1,11 @@
 // Määritellään palvelimelle portti.
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 // Otetaan moduuleja käyttöön.
-var express = require("express");
-var app = express();
-var fs = require("fs");
-var bodyParser = require("body-parser");
+const guests = require("./dataset.json");
+const fs = require("fs");
+const express = require("express");
+const app = express();
 
 // Otetaan body-parser käyttöön express-sovelluksessa.
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,32 +15,50 @@ app.get('/', function (req, res){
 });
 
 app.get('/guestbook', function (req, res){
+    const table = makeTable;
     res.sendFile(__dirname +'/guest.html');
 });
 app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/message.html');
 });
 
-app.post('/newmessage', function (req, res){
-    var data = require("./dataset.json");
-    // creates a new Json object and adds it to a existing data variable
-    data.push({
-        "Username": req.body.Username,
-        "Country": req.body.Country,
-        "Date": new Date(),
-        "Message":req.body.Message
-        });
-    //converts Json in to string format 
-    var jsonStr = JSON.stringify(data);
-    // Kirjoitetaan data JSON tiedostoon.
-    fs.writeFile("dataset.json", jsonStr, (err) => {
-        if (err) throw err;
-        console.log("...It is saved!");
-    });
-    // Esitetään haluttu data.
-    res.send("It is saved to a JSON file");
-});
+// POST route for New Message Page
+app.post("/addNewMessage", (req, res) => {
+    addNewGuest(req.body.name, req.body.country, req.body.message);
+    res.redirect("/guestbook.html");
+  })
+
 // Luodaan web-palvelin.
 app.listen(PORT, () => {
-    console.log("Example app listening on port " + PORT);
+    console.log("app listening on port " + PORT);
 });
+
+function makeTable() {
+    const guests = require("./guests.json");
+    const guestsFormat = guests.map(guest => (
+      `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
+    ))
+    .reduce((prevValue, curValue) => prevValue + curValue);
+  
+    return (`<table class="table"><thead class="thead-dark"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
+    ${guestsFormat}
+    </tbody></table>`);
+  }
+
+function addNewGuest(username, country, message) {
+    const newGuestObject = {
+      id: guests.length + 1,
+      username: username,
+      country: country,
+      date: Date(),
+      message: message
+    }
+    guests.push(newGuestObject);
+  
+    const guestsString = JSON.stringify(guests);
+  
+    fs.writeFile("guests.json", guestsString, (err) => {
+      if (err) throw err;
+      console.log("Guest has been saved!");
+    })
+  }
