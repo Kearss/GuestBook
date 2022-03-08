@@ -5,29 +5,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
 <h1>Make this page pretty with bootstrap or pure.css</h1>
-    <a href="https://guestbookexcercise.herokuapp.com/">homepage</a>
-    <a href="https://guestbookexcercise.herokuapp.com/guestbook">Guestbook</a>
-    <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
-    <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/guestbook">Guestbook</a></li>
+    <li><a href="/newmessage">New Message</a></li>
+    <li><a href="/ajaxmessage">New Ajax Message</a></li>
+  </ul>
+</nav>
 
   <body>
 
       <h1>Messages!</h1>
-        <div class="container" onload=makeTable()>
+        <div class="container">
           
         </div>
   </body>
-  <script>
-    function makeTable() {
-    const guests = require("./datasets.json");
-    const guestsFormat = guests.map(guest => (
-      `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
-    ))
-    .reduce((prevValue, curValue) => prevValue + curValue);
-  
-    return (`<table class="table"><thead class="thead-dark"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
-    ${guestsFormat}
-    </tbody></table>`);
-  }
-    </script>
+
 </html> 
