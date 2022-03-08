@@ -44,5 +44,5 @@ app.post('/newmessage', function (req, res){
 });
 // Luodaan web-palvelin.
 app.listen(PORT, () => {
-    console.log("Example app listening on port " + PORT);
+    console.log("app listening on port " + PORT);
 });
