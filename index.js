@@ -11,14 +11,14 @@ var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res){
-    res.sendFile(__dirname +'/page/index.html');
+    res.render("pages/index.html");
 });
 
 app.get('/guestbook', function (req, res){
-    res.sendFile(__dirname +'/page/guest.html');
+    res.render("pages/index.html");
 });
 app.get('/newmessage', function (req, res){
-    res.sendFile(__dirname +'/page/message.html');
+    res.render("pages/index.html");
 });
 
 app.post('/newmessage', function (req, res){
