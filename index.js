@@ -13,15 +13,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', function (req, res){
-    res.sendFile('/index.html');
+    res.render(__dirname +'/index.html');
 });
 
 app.get('/guestbook', function (req, res){
     const table = makeTable;
-    res.sendFile('/guest.html', {table: table});
+    res.render(__dirname +'/guest.html', {table: table});
 });
 app.get('/newmessage', function (req, res){
-    res.sendFile('/message.html');
+    res.render(__dirname +'/message.html');
 });
 
 app.post('/addNewMessage', function (req, res){
