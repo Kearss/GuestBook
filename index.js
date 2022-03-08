@@ -24,9 +24,9 @@ app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/message.html');
 });
 
-app.post('/newmessage', function (req, res){
+app.post('/addNewMessage', function (req, res){
     addNewGuest(req.body.name, req.body.country, req.body.message);
-    res.redirect("/guestbook");
+    res.redirect("/guestbook.html");
 });
 // Luodaan web-palvelin.
 app.listen(PORT, () => {
@@ -35,7 +35,7 @@ app.listen(PORT, () => {
 
 // Helper function for making the HTML-Table out of Guests JSON-data
 function makeTable() {
-    const guests = require("./guests.json");
+    const guests = require("./dataset.json");
     const guestsFormat = guests.map(guest => (
       `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
     ))
@@ -45,7 +45,7 @@ function makeTable() {
     ${guestsFormat}
     </tbody></table>`);
   }
-  
+
   //Helper function to add a new Guest to local variable and JSON file
 function addNewGuest(username, country, message) {
     const newGuestObject = {
