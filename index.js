@@ -13,7 +13,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', function (req, res){
-    res.render(__dirname +'/index.html');
+    res.render('index', function (err, html) {
+        res.send(html)
+      })
 });
 
 app.get('/guestbook', function (req, res){
