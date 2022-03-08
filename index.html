@@ -1,12 +1,127 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax Message</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />
+</head>
+<style>
 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  ul {
+    width: 100%;
+    padding-top: 15px;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  a {
+    color: white;
+    font-size: 20px;
+  }
+  header {
+    width: 100%;
+    background-color: rgba(29, 28, 28, 0.89);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: bolder;
+  }
+
+  h2 {
+    margin-top: 40px;
+    max-width: 1000px;
+  }
+
+  img {
+    border-radius: 10px;
+    max-width: 600px;
+    height: auto;
+  }
+
+  .welcome-box {
+    border: solid 2px black;
+    background-color: rgb(212, 211, 211);
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  @media screen and (max-width:768px) {
+  .tohide { 
+    display: none; 
+    }
+
+  .welcome-box {
+    margin: 0 10px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 18px;
+  }
+
+  ul {
+      flex-direction: column;
+    }
+
+  img {
+    width: 300px;
+    height: auto;
+  }
+  }
+
+</style>
 <body>
-    <h1>Beautiful homepage that does not exit yet </h1>
-    <a href="https://guestbookexcercise.herokuapp.com/">homepage</a>
-    <a href="https://guestbookexcercise.herokuapp.com/guestbook">Guestbook</a>
-    <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
-    <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
-
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/guest">Guestbook</a></li>
+          <li><a href="/message">New Message</a></li>
+          <li><a href="/ajax">New Ajax Message</a></li>
+        </ul>
+      </nav>
+    </header>
+    <img alt="Empty notebook" src="https://images.pexels.com/photos/531844/pexels-photo-531844.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+    <div class="welcome-box">
+      <h1>Welcome to the Guestbook App!</h1>
+      <h2>See other guests from Guestbook page or add yourself to the Guestbook trough New Message or New Ajax Message pages</h2>
+    </div>
+    <footer>Made by Kim Dinh</footer>
+  </body>
 </body>
 </html>
