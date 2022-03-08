@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("pages/index.ejs");
+  res.render("views/index.ejs");
 });
 
 // Guestbook Page
