@@ -18,7 +18,6 @@ app.get('/', function (req, res){
 
 app.get('/guestbook', function (req, res){
     const table = makeTable;
-  
     res.sendFile(__dirname +'/guest.html', {table: table});
 });
 app.get('/newmessage', function (req, res){
