@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("/index.ejs");
 });
 
 // Guestbook Page
@@ -48,7 +48,7 @@ app.post("/addNewMessage", (req, res) => {
 
 //Starting the server
 app.listen(PORT, () => {
-  console.log("App is running on port"+ PORT);
+  console.log("App is running on port 8000");
 })
 
 // Helper function for making the HTML-Table out of Guests JSON-data
