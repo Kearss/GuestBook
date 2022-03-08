@@ -7,6 +7,7 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 
+
 // Otetaan body-parser käyttöön express-sovelluksessa.
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,37 +17,32 @@ app.get('/', function (req, res){
 });
 
 app.get('/guestbook', function (req, res){
-    const table = makeTable;
     res.sendFile(__dirname +'/guest.html');
 });
 app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/message.html');
 });
 
-app.post("/addNewMessage", (req, res) => {
-    addNewGuest(req.body.name, req.body.country, req.body.message);
-    res.redirect("/guestbook");
-  })
-
+app.post('/newmessage', function (req, res){
+    var data = require("./dataset.json");
+    // creates a new Json object and adds it to a existing data variable
+    data.push({
+        "Username": req.body.Username,
+        "Country": req.body.Country,
+        "Date": new Date(),
+        "Message":req.body.Message
+        });
+    //converts Json in to string format 
+    var jsonStr = JSON.stringify(data);
+    // Kirjoitetaan data JSON tiedostoon.
+    fs.writeFile("dataset.json", jsonStr, (err) => {
+        if (err) throw err;
+        console.log("...It is saved!");
+    });
+    // Esitetään haluttu data.
+    res.send("It is saved to a JSON file");
+});
 // Luodaan web-palvelin.
 app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
 });
-
-function addNewGuest(username, country, message) {
-    const newGuestObject = {
-      id: guests.length + 1,
-      username: username,
-      country: country,
-      date: Date(),
-      message: message
-    }
-    guests.push(newGuestObject);
-  
-    const guestsString = JSON.stringify(guests);
-  
-    fs.writeFile("guests.json", guestsString, (err) => {
-      if (err) throw err;
-      console.log("Guest has been saved!");
-    })
-  }
