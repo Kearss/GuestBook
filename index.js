@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("views/index.ejs");
+  res.render("index.ejs");
 });
 
 // Guestbook Page
@@ -31,7 +31,7 @@ app.get("/newmessage", (req, res) => {
 
 // New Ajax Message Page
 app.get("/ajaxmessage", (req, res) => {
-  res.render("pages/ajaxmessage");
+  res.render("ajaxmessage");
 });
 
 // POST route for Ajax Message Page
