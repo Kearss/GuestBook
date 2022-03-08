@@ -48,7 +48,7 @@ app.post("/addNewMessage", (req, res) => {
 
 //Starting the server
 app.listen(PORT, () => {
-  console.log("App is running on port 8000");
+  console.log("App is running on port"+ PORT);
 })
 
 // Helper function for making the HTML-Table out of Guests JSON-data
