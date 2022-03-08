@@ -8,7 +8,8 @@ const express = require("express");
 const app = express();
 
 // Otetaan body-parser käyttöön express-sovelluksessa.
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', function (req, res){
     res.sendFile(__dirname +'/index.html');
@@ -22,28 +23,15 @@ app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/message.html');
 });
 
-// POST route for New Message Page
 app.post("/addNewMessage", (req, res) => {
     addNewGuest(req.body.name, req.body.country, req.body.message);
-    res.redirect("/guestbook.html");
+    res.redirect("/guestbook");
   })
 
 // Luodaan web-palvelin.
 app.listen(PORT, () => {
-    console.log("app listening on port " + PORT);
+    console.log("Example app listening on port " + PORT);
 });
-
-function makeTable() {
-    const guests = require("./guests.json");
-    const guestsFormat = guests.map(guest => (
-      `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
-    ))
-    .reduce((prevValue, curValue) => prevValue + curValue);
-  
-    return (`<table class="table"><thead class="thead-dark"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
-    ${guestsFormat}
-    </tbody></table>`);
-  }
 
 function addNewGuest(username, country, message) {
     const newGuestObject = {
