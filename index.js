@@ -53,7 +53,7 @@ app.listen(PORT, () => {
 
 // Helper function for making the HTML-Table out of Guests JSON-data
 function makeTable() {
-  const guests = require("./guests.json");
+  const guests = require("./dataset.json");
   const guestsFormat = guests.map(guest => (
     `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
   ))
@@ -77,7 +77,7 @@ function addNewGuest(username, country, message) {
 
   const guestsString = JSON.stringify(guests);
 
-  fs.writeFile("guests.json", guestsString, (err) => {
+  fs.writeFile("dataset.json", guestsString, (err) => {
     if (err) throw err;
     console.log("Guest has been saved!");
   })
