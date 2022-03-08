@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Home Page
 app.get("/", (req, res) => {
-    res.render("index.html");
+    res.render("index.ejs");
   });
 
 // Guestbook Page
