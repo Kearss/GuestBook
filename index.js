@@ -59,7 +59,7 @@ function makeTable() {
   ))
   .reduce((prevValue, curValue) => prevValue + curValue);
 
-  return (`<table class="table"><thead class="thead-dark"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
+  return (`<table class="table"><thead class="thead-blue"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
   ${guestsFormat}
   </tbody></table>`);
 }
