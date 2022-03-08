@@ -1,4 +1,4 @@
-const guests = require("./guests.json");
+const guests = require("./dataset.json");
 const fs = require("fs");
 const express = require("express");
 const app = express();
@@ -15,23 +15,23 @@ const PORT = process.env.PORT || 8000;
 
 // Home Page
 app.get("/", (req, res) => {
-  res.render("pages/index.ejs");
+  res.render("index.ejs");
 });
 
 // Guestbook Page
 app.get("/guestbook", (req, res) => {
   const table = makeTable;
-  res.render("pages/guestbook", {table: table});
+  res.render("guestbook", {table: table});
 });
 
 // New Message Page
 app.get("/newmessage", (req, res) => {
-  res.render("pages/newmessage");
+  res.render("message");
 });
 
 // New Ajax Message Page
 app.get("/ajaxmessage", (req, res) => {
-  res.render("pages/ajaxmessage");
+  res.render("ajax");
 });
 
 // POST route for Ajax Message Page
