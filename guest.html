@@ -13,12 +13,28 @@
   <body>
 
       <h1>Messages!</h1>
-      <div class="container">
-        <%- table() %>
-      </div>
+      <table class="table table-striped" class="table">
+            <thead>
+              <th>Username</th>
+              <th>Country</th>
+              <th>Message</th>
+          </thead>
+          <tbody>
+
+          </tbody>
+    </table>
+    
   </body>
 
   <script>
+
+  
+   $.getJSON('../dataset.json', function(data) {
+       $.each(data, function(i, f) {
+          var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +"<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
+           $(tblRow).appendTo(".table tbody");
+     });
+   });
 
 </script>
 
