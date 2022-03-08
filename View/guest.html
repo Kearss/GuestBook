@@ -13,28 +13,23 @@
   <body>
 
       <h1>Messages!</h1>
-      <table class="table table-striped" class="table">
-            <thead>
-              <th>Username</th>
-              <th>Country</th>
-              <th>Message</th>
-          </thead>
-          <tbody>
-
-          </tbody>
-    </table>
-    
+      <div class="container">
+        <%- table() %>
+      </div>
   </body>
 
   <script>
+    function makeTable() {
+      const guests = require("./dataset.json");
+      const guestsFormat = guests.map(guest => (
+        `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
+      ))
+      .reduce((prevValue, curValue) => prevValue + curValue);
 
-  
-   $.getJSON('../dataset.json', function(data) {
-       $.each(data, function(i, f) {
-          var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +"<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
-           $(tblRow).appendTo(".table tbody");
-     });
-   });
+      return (`<table class="table"><thead class="thead-dark"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
+      ${guestsFormat}
+      </tbody></table>`);
+    }
 
 </script>
 
