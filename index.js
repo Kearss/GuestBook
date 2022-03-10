@@ -15,10 +15,11 @@ app.get('/', function (req, res){
     res.sendFile(__dirname +'/public/index.html');
 });
 
-// Luodaan reitti, joka hakee JSON-tiedoston ja parsii sen taulukkoon. //
-app.get('/newmessage', function (req, res){
+
+app.get('/guestbook', function (req, res){
     res.sendFile(__dirname +'/public/guest.html');
 });
+// Luodaan reitti, joka hakee JSON-tiedoston ja parsii sen taulukkoon. //
 app.post("/guestbook", function (req, res) {
     var json = require(__dirname + "/public/guestbook.json");
     var results = bootstrap + "<table class='table table-striped'><tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>";
