@@ -16,11 +16,11 @@ app.get('/', function (req, res){
 });
 
 // Luodaan reitti, joka hakee JSON-tiedoston ja parsii sen taulukkoon. //
-
-app.get("/guestbook", function (req, res) {
-   
+app.get('/newmessage', function (req, res){
+    res.sendFile(__dirname +'/public/guest.html');
+});
+app.post("/guestbook", function (req, res) {
     var json = require(__dirname + "/public/guestbook.json");
-    var bootstrap = "<link rel="+'stylesheet'+" href=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css></link>"
     var results = bootstrap + "<table class='table table-striped'><tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>";
 
     for (var i = 0; i < json.length; i++) {
