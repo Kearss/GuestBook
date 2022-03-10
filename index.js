@@ -23,9 +23,9 @@ app.get("/guestbook", (req, res) => {
     "<nav style ='display: flex;align-items: center;justify-content: center;'>"+
     "<ul style= 'width: 100%;padding-top: 15px;list-style: none;display: flex;justify-content: space-evenly;align-items: center;flex-wrap: wrap;'>"+
     "<li><a style:'color: white;font-size: 20px;' href='/'>Home</a></li>"+
-    "<li><a href='/guestbook'>Guestbook</a></li>"+""+
-    "<li><a href='/newmessage'>New Message</a></li>"+""+
-    "<li><a href='/ajaxmessage'>New Ajax Message</a></li></nav></header>"+
+    "<li><a style:'color: white;font-size: 20px;' href='/guestbook'>Guestbook</a></li>"+""+
+    "<li><a style:'color: white;font-size: 20px;' href='/newmessage'>New Message</a></li>"+""+
+    "<li><a style:'color: white;font-size: 20px;' href='/ajaxmessage'>New Ajax Message</a></li></nav></header>"+
     bootstrap+"<table class='table' style='width: 100%'> <thead class='thead-dark'>" +
     '<tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>';
     for (let i = 0; i < data.length; i++) {
