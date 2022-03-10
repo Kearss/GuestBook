@@ -78,7 +78,6 @@ app.get('/ajaxmessage', function (req, res){
 });
 app.post("/ajaxmessage", function (req, res) {
     var data = require("./dataset.json");
-
     data.push({
         "username": req.body.username,
         "country": req.body.country,
@@ -86,13 +85,12 @@ app.post("/ajaxmessage", function (req, res) {
         "message": req.body.message
     });
     var jsonStr = JSON.stringify(data);
-    fs.writeFileSync(__dirname + "/dataset.json", jsonStr);
-    res.sendFile(__dirname + "/dataset.json")
+    fs.writeFileSync(__dirname + "./dataset.json", jsonStr);
+    res.sendFile(__dirname + "./dataset.json")
 })
 
 function addToGuestbook(req) {
     let data = require("./dataset.json");
-  
     data.push({
       "username": req.body.username,
       "country": req.body.country,
@@ -101,7 +99,6 @@ function addToGuestbook(req) {
     });
   
     let jsonStr = JSON.stringify(data);
-  
     fs.writeFile("./dataset.json", jsonStr, (err) => {
       if (err) throw err;
     });
