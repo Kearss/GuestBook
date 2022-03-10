@@ -17,7 +17,6 @@ app.get('/', function (req, res){
 
 
 app.get('/guestbook', function (req, res){
-    res.sendFile(__dirname +'/public/guest.html');
     var json = require(__dirname + "/public/guestbook.json");
     for (var i = 0; i < json.length; i++) {
         results +=
