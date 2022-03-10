@@ -19,7 +19,7 @@ app.get('/', function (req, res){
 app.get("/guestbook", (req, res) => {
     let data = require("./dataset.json");
     var bootstrap = "<link rel="+'stylesheet'+" href=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css></link>"
-    let results ="<header style = 'width: 100% background-color: rgba(29, 28, 28, 0.89)'><nav><a href='/'>Home</a>" +""+ "<a href='/guestbook'>Guestbook</a>"+""+"<a href='/newmessage'>Message</a>"+""+"<a href='/ajaxmessage'>Ajax</a></nav></header>"+
+    let results ="<header style = 'width: 100%' style= 'background-color: rgba(29, 28, 28, 0.89)'><nav><a href='/'>Home</a>" +""+ "<a href='/guestbook'>Guestbook</a>"+""+"<a href='/newmessage'>Message</a>"+""+"<a href='/ajaxmessage'>Ajax</a></nav></header>"+
     bootstrap+"<table class='table' style='width: 100%'> <thead class='thead-dark'>" +
     '<tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>';
     for (let i = 0; i < data.length; i++) {
