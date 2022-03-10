@@ -1,84 +1,66 @@
-const guests = require("./dataset.json");
-const fs = require("fs");
-const express = require("express");
-const app = express();
+// Määritellään palvelimelle portti.
+const PORT = process.env.PORT || 3000;
 
-//For handling the form
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Otetaan moduuleja käyttöön.
+var express = require("express");
+var app = express();
+var fs = require("fs");
+var bodyParser = require("body-parser");
 
-//Including EJS
-app.set("view engine", "ejs");
+// Otetaan body-parser käyttöön express-sovelluksessa.
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 
-// Getting the right port dynamically
-const PORT = process.env.PORT || 8000;
-
-// Home Page
-app.get("/", (req, res) => {
-  res.render("pages/index.ejs");
+app.get('/', function (req, res){
+    res.sendFile(__dirname +'/index.html');
 });
 
-// Guestbook Page
-app.get("/guestbook", (req, res) => {
-  const table = makeTable;
-  res.render("pages/guest", {table: table});
+app.get("/guestbook", function (req, res) {
+    var json = require(__dirname + "./dataset.json");
+    var bootstrap = "<link rel="+'stylesheet'+" href=https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css></link>"
+    var results = bootstrap + "<table class='table table-striped'><tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>";
+
+    for (var i = 0; i < json.length; i++) {
+        results +=
+            "<tr>" +
+            "<td>" + json[i].username + "</td>" +
+            "<td>" + json[i].country + "</td>" +
+            "<td>" + json[i].date + "</td>" +
+            "<td>" + json[i].message + "</td>" +
+            "</tr>";
+    } results += "</table>"
+    res.send(results);
 });
 
-// New Message Page
-app.get("/newmessage", (req, res) => {
-  res.render("pages/message");
+app.get('/newmessage', function (req, res){
+    res.sendFile(__dirname +'/message.html');
 });
 
-// New Ajax Message Page
-app.get("/ajaxmessage", (req, res) => {
-  res.render("pages/ajax");
+app.post('/newmessage', function (req, res){
+    var data = require("./public/guestbook.json");
+    // Tehdään if/else -lause, joka tarkistaa onko tyhjiä kenttiä. Jos yksikin kentistä on tyhjä, niin sivu latautuu uudelleen. //
+    if (req.body.username == "" || req.body.country == "" || req.body.message == "") {
+        res.redirect("/newmessage")
+    } else {
+        // Lähetetään lomakkeed tiedot JSON-muodossa serverille ja tallennetaan ne guestbook.json tiedostoon. //
+        data.push({
+            "username": req.body.username,
+            "country": req.body.country,
+            "date": new Date(),
+            "message": req.body.message
+        });
+
+        var jsonStr = JSON.stringify(data);
+
+        fs.writeFile(__dirname + "/public/guestbook.json", jsonStr, (err) => {
+            if (err) throw err;
+            console.log("Data saved!")
+        });
+        // Kun kaikki on valmista, ohjataan käyttäjä "/guestbook" sivulle. //
+        res.redirect("/guestbook")
+    }
 });
-
-// POST route for Ajax Message Page
-app.post("/addAjaxMessage", (req, res) => {
-  addNewGuest(req.body.name, req.body.country, req.body.message);
-  res.send(makeTable());
-})
-
-// POST route for New Message Page
-app.post("/addNewMessage", (req, res) => {
-  addNewGuest(req.body.name, req.body.country, req.body.message);
-  res.redirect("/guestbook");
-})
-
-//Starting the server
+// Luodaan web-palvelin.
 app.listen(PORT, () => {
-  console.log("App is running on port 8000");
-})
-
-// Helper function for making the HTML-Table out of Guests JSON-data
-function makeTable() {
-  const guests = require("./dataset.json");
-  const guestsFormat = guests.map(guest => (
-    `<tr><td class="tohide">${guest.id}</td><td>${guest.username}</td><td>${guest.country}</td><td class="tohide">${guest.date}</td><td>${guest.message}</td></tr>`
-  ))
-  .reduce((prevValue, curValue) => prevValue + curValue);
-
-  return (`<table class="table"><thead class="thead-light"><tr><th class="tohide">ID</td><th>Name</th><th>Country</th><th class="tohide">Date</th><th>Message</th></tr></thead><tbody>
-  ${guestsFormat}
-  </tbody></table>`);
-}
-
-//Helper function to add a new Guest to local variable and JSON file
-function addNewGuest(username, country, message) {
-  const newGuestObject = {
-    id: guests.length + 1,
-    username: username,
-    country: country,
-    date: Date(),
-    message: message
-  }
-  guests.push(newGuestObject);
-
-  const guestsString = JSON.stringify(guests);
-
-  fs.writeFile("dataset.json", guestsString, (err) => {
-    if (err) throw err;
-    console.log("Guest has been saved!");
-  })
-}
+    console.log("Example app listening on port " + PORT);
+});

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+<h1>Make this page pretty with bootstrap or pure.css</h1>
+    <a href="https://guestbookexcercise.herokuapp.com/">homepage</a>
+    <a href="https://guestbookexcercise.herokuapp.com/guestbook">Guestbook</a>
+    <a href="https://guestbookexcercise.herokuapp.com/newmessage">message</a>
+    <a href="https://guestbookexcercise.herokuapp.com/ajax">Ajax</a>
+
+  <body>
+
+      <h1>Messages!</h1>
+      <table class="table table-striped" class="table">
+            <thead>
+              <th>Username</th>
+              <th>Country</th>
+              <th>Message</th>
+          </thead>
+          <tbody>
+
+          </tbody>
+    </table>
+    
+  </body>
+
+  <script>
+
+  
+   $.getJSON('../dataset.json', function(data) {
+       $.each(data, function(i, f) {
+          var tblRow = "<tr>" + "<td>" + f.Username + "</td>" +"<td>" + f.Country + "</td>" + "<td>" + f.Message + "</td>" + "</tr>"
+           $(tblRow).appendTo(".table tbody");
+     });
+   });
+
+</script>
+
+</html> 
