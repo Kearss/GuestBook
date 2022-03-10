@@ -16,9 +16,9 @@ app.get('/', function (req, res){
 });
 
 // Luodaan reitti, joka hakee JSON-tiedoston ja parsii sen taulukkoon. //
-// Tein tämän kohdan alusta asti hieman väärin, joten visuaalinen muokkaaminen Bootstrapin avulla jäi pois, koska en tajunnut tehdä html-sivua, johon taulukko tulostuu. //
+
 app.get("/guestbook", function (req, res) {
-    res.sendFile(__dirname +'/public/guest.html');
+   
     var json = require(__dirname + "/public/guestbook.json");
     var bootstrap = "<link rel="+'stylesheet'+" href=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css></link>"
     var results = bootstrap + "<table class='table table-striped'><tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>";
