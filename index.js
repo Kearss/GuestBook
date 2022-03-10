@@ -17,7 +17,7 @@ app.get('/', function (req, res){
 
 app.get("/guestbook", function (req, res) {
     var json = require(__dirname + "./dataset.json");
-    var bootstrap = "<link rel="+'stylesheet'+" href=https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css></link>"
+   
     var results = bootstrap + "<table class='table table-striped'><tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>";
 
     for (var i = 0; i < json.length; i++) {
