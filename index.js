@@ -86,12 +86,9 @@ app.post("/ajaxmessage", function (req, res) {
         "message": req.body.message
     });
 
-
     var jsonStr = JSON.stringify(data);
 
     fs.writeFileSync(__dirname + "/public/guestbook.json", jsonStr);
-
-
 
     res.sendFile(__dirname + "/public/guestbook.json")
 })
