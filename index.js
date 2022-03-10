@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 app.get('/', function (req, res){
-    res.sendFile(__dirname +'pages/index.html');
+    res.sendFile(__dirname +'/public/index.html');
 });
 
 app.get("/guestbook", function (req, res) {
@@ -33,7 +33,7 @@ app.get("/guestbook", function (req, res) {
 });
 
 app.get('/newmessage', function (req, res){
-    res.sendFile(__dirname +'pages/message.html');
+    res.sendFile(__dirname +'/public/message.html');
 });
 
 app.post('/newmessage', function (req, res){
@@ -52,7 +52,7 @@ app.post('/newmessage', function (req, res){
 
         var jsonStr = JSON.stringify(data);
 
-        fs.writeFile(__dirname + "/public/guestbook.json", jsonStr, (err) => {
+        fs.writeFile(__dirname + "/public/dataset.json", jsonStr, (err) => {
             if (err) throw err;
             console.log("Data saved!")
         });
