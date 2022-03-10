@@ -19,8 +19,9 @@ app.get('/', function (req, res){
 app.get("/guestbook", (req, res) => {
     let data = require("./dataset.json");
     var bootstrap = "<link rel="+'stylesheet'+" href=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css></link>"
-    let results ="<nav><ul><li><a href='/'>Home</a></li></ul></nav>"+bootstrap+"<table class='table' style='width: 100%'> <thead class='thead-dark'>" +
-      '<tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>';
+    let results ="<nav><a href='/'>Home</a><a href='/guestbook'>Guestbook</a><a href='/newmessage'>Message</a><a href='/ajaxmessage'>Ajax</a></nav>"+
+    bootstrap+"<table class='table' style='width: 100%'> <thead class='thead-dark'>" +
+    '<tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>';
     for (let i = 0; i < data.length; i++) {
       results +=
         '<tr>' +
