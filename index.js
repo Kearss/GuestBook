@@ -77,7 +77,7 @@ app.get('/ajaxmessage', function (req, res){
     res.sendFile(__dirname +'/public/ajax.html');
 });
 app.post("/ajaxmessage", function (req, res) {
-    var data = require("./public/guestbook.json");
+    var data = require("./dataset.json");
 
     data.push({
         "username": req.body.username,
@@ -85,12 +85,9 @@ app.post("/ajaxmessage", function (req, res) {
         "date": new Date(),
         "message": req.body.message
     });
-
     var jsonStr = JSON.stringify(data);
-
-    fs.writeFileSync(__dirname + "/public/guestbook.json", jsonStr);
-
-    res.sendFile(__dirname + "/public/guestbook.json")
+    fs.writeFileSync(__dirname + "/dataset.json", jsonStr);
+    res.sendFile(__dirname + "/dataset.json")
 })
 
 function addToGuestbook(req) {
