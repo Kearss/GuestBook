@@ -113,4 +113,52 @@
     </div>
     <footer>Made by Kim Dinh</footer>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+      // Luodaan on-click funktio, joka käynnistää scriptin // 
+      $("#send").click(function () {
+      // Tallennetaan lomakkeen arvot muuttujiin sekä lisätään päivämäärä //
+        var name = $("#name").val();
+        var country = $("#country").val();
+        var message = $("#message").val();
+        var date = new Date();
+      // Tarkistetaan if/else-lauseella onko lomakkeet tyhjiä ja estetään tyhjien kenttien lähettäminen. //
+        if (name == "" || country == "" || message == "") {
+          alert("Empy fields are not allowed!")
+        } else {
+      // Tuodaan CSS:n avulla piilotettu taulukko näkyviin //
+        $("#gbdata").show();
+      // Luodaan muuttuja, joka sisältää kaikkien lomakkeen kenttien tiedot. //
+          var sendingData = {
+            "username": name,
+            "country": country,
+            "message": message
+            };
+      // Luodaan AJAX-kutsu, jolla lähetetään lomakkeen tiedot serverille. //
+        $.ajax({
+            type: 'POST',
+            url: '/ajaxmessage',
+            data: sendingData,
+            success: function (postData) {
+              {
+      // Parsitaan serverin lähettämä JSON-muotoinen vastaus taulukkoon. //
+                for (var i = 0; i < postData.length; i++) {
+                var username = postData[i].username;
+                var country = postData[i].country
+                var message = postData[i].message
+                var date = postData[i].date
+                var tr_str = "<tr>" +
+                "<td align='center'>" + username + "</td>" +
+                "<td align='center'>" + country + "</td>" +
+                "<td align='center'>" + date.toString() + "</td>" +
+                "<td align='center'>" + message + "</td>" +
+                "</tr>"
+                $("#gbdata").append(tr_str);
+              }
+            }
+          }
+        })
+      }
+    })
+  </script>
 </html>
