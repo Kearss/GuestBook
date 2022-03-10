@@ -73,6 +73,9 @@ app.post('/newmessage', function (req, res){
 app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
 });
+app.get('/ajaxmessage', function (req, res){
+    res.sendFile(__dirname +'/public/ajax.html');
+});
 
 function addToGuestbook(req) {
     let data = require("./dataset.json");
