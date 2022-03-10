@@ -110,19 +110,19 @@
       // Luodaan on-click funktio, joka käynnistää scriptin // 
       $("#send").click(function () {
       // Tallennetaan lomakkeen arvot muuttujiin sekä lisätään päivämäärä //
-        var name = $("#name").val();
+        var username = $("#username").val();
         var country = $("#country").val();
         var message = $("#message").val();
         var date = new Date();
       // Tarkistetaan if/else-lauseella onko lomakkeet tyhjiä ja estetään tyhjien kenttien lähettäminen. //
-        if (name == "" || country == "" || message == "") {
+        if (usernamename == "" || country == "" || message == "") {
           alert("Empy fields are not allowed!")
         } else {
       // Tuodaan CSS:n avulla piilotettu taulukko näkyviin //
         $("#gbdata").show();
       // Luodaan muuttuja, joka sisältää kaikkien lomakkeen kenttien tiedot. //
           var sendingData = {
-            "username": name,
+            "username": username,
             "country": country,
             "message": message
             };
@@ -153,7 +153,5 @@
       }
     })
   </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
+
 </html>
