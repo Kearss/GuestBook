@@ -18,6 +18,17 @@ app.get('/', function (req, res){
 
 app.get('/guestbook', function (req, res){
     res.sendFile(__dirname +'/public/guest.html');
+    var json = require(__dirname + "/public/guestbook.json");
+    for (var i = 0; i < json.length; i++) {
+        results +=
+            "<tr>" +
+            "<td>" + json[i].username + "</td>" +
+            "<td>" + json[i].country + "</td>" +
+            "<td>" + json[i].date + "</td>" +
+            "<td>" + json[i].message + "</td>" +
+            "</tr>";
+    } results += "</table>"
+    res.send(results);
 });
 // Luodaan reitti, joka hakee JSON-tiedoston ja parsii sen taulukkoon. //
 app.post("/guestbook", function (req, res) {
