@@ -78,7 +78,7 @@ function addToGuestbook(req) {
     let data = require("./dataset.json");
   
     data.push({
-      "username": req.body.name,
+      "username": req.body.username,
       "country": req.body.country,
       "date": new Date(),
       "message": req.body.message
