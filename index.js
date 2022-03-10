@@ -25,6 +25,7 @@ app.get("/guestbook", (req, res) => {
         '<tr>' +
         '<td>' + data[i].username + '</td>' +
         '<td>' + data[i].country + '</td>' +
+        "<td>" + data[i].date + "</td>" +
         '<td>' + data[i].message + '</td>' +
         '</tr>';
     }
