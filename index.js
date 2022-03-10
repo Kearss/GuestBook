@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 
 app.get('/', function (req, res){
-    res.sendFile(__dirname +'/index.html');
+    res.sendFile(__dirname +'pages/index.html');
 });
 
 app.get("/guestbook", function (req, res) {
@@ -33,11 +33,11 @@ app.get("/guestbook", function (req, res) {
 });
 
 app.get('/newmessage', function (req, res){
-    res.sendFile(__dirname +'/message.html');
+    res.sendFile(__dirname +'pages/message.html');
 });
 
 app.post('/newmessage', function (req, res){
-    var data = require("./public/guestbook.json");
+    var data = require("./dataset.json");
     // Tehdään if/else -lause, joka tarkistaa onko tyhjiä kenttiä. Jos yksikin kentistä on tyhjä, niin sivu latautuu uudelleen. //
     if (req.body.username == "" || req.body.country == "" || req.body.message == "") {
         res.redirect("/newmessage")
