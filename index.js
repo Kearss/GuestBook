@@ -19,7 +19,8 @@ app.get('/', function (req, res){
 app.get("/guestbook", (req, res) => {
     let data = require("./dataset.json");
     var bootstrap = "<link rel="+'stylesheet'+" href=https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css></link>"
-    let results = bootstrap + "<table class='table table-striped'>" +
+    var nav ="";
+    let results = "<table class='table' style='width: 100%'> <thead class='thead-dark'>" +
       '<tr><th>Name</th><th>Country</th><th>Message</th></tr>';
     for (let i = 0; i < data.length; i++) {
       results +=
