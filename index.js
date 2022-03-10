@@ -16,35 +16,21 @@ app.get('/', function (req, res){
 });
 
 
-app.get('/guestbook', function (req, res){
-    var json = require(__dirname + "/public/guestbook.json");
-    for (var i = 0; i < json.length; i++) {
-        results +=
-            "<tr>" +
-            "<td>" + json[i].username + "</td>" +
-            "<td>" + json[i].country + "</td>" +
-            "<td>" + json[i].date + "</td>" +
-            "<td>" + json[i].message + "</td>" +
-            "</tr>";
-    } results += "</table>"
+app.get("/guestbook", (req, res) => {
+    let data = require("./dataset.json");
+    let results = "<table border='1' style='width: 100%'>" +
+      '<tr><th>Name</th><th>Country</th><th>Message</th></tr>';
+    for (let i = 0; i < data.length; i++) {
+      results +=
+        '<tr>' +
+        '<td>' + data[i].username + '</td>' +
+        '<td>' + data[i].country + '</td>' +
+        '<td>' + data[i].message + '</td>' +
+        '</tr>';
+    }
+    results += "</table>";
     res.send(results);
-});
-// Luodaan reitti, joka hakee JSON-tiedoston ja parsii sen taulukkoon. //
-app.post("/guestbook", function (req, res) {
-    var json = require(__dirname + "/public/guestbook.json");
-    var results = bootstrap + "<table class='table table-striped'><tr><th>Name</th><th>Country</th><th>Date</th><th>Message</th></tr>";
-
-    for (var i = 0; i < json.length; i++) {
-        results +=
-            "<tr>" +
-            "<td>" + json[i].username + "</td>" +
-            "<td>" + json[i].country + "</td>" +
-            "<td>" + json[i].date + "</td>" +
-            "<td>" + json[i].message + "</td>" +
-            "</tr>";
-    } results += "</table>"
-    res.send(results);
-});
+  });
 
 app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/public/message.html');
@@ -78,3 +64,20 @@ app.post('/newmessage', function (req, res){
 app.listen(PORT, () => {
     console.log("Example app listening on port " + PORT);
 });
+
+function addToGuestbook(req) {
+    let data = require("./dataset.json");
+  
+    data.push({
+      "username": req.body.name,
+      "country": req.body.country,
+      "date": new Date(),
+      "message": req.body.message
+    });
+  
+    let jsonStr = JSON.stringify(data);
+  
+    fs.writeFile("./data.json", jsonStr, (err) => {
+      if (err) throw err;
+    });
+  }
