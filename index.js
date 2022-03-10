@@ -21,7 +21,8 @@ app.get("/guestbook", (req, res) => {
     var bootstrap = "<link rel="+'stylesheet'+" href=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css></link>"
     let results ="<header style = 'background-color: rgba(29, 28, 28, 0.89);' >"+
     "<nav style ='display: flex;align-items: center;justify-content: center;'>"+
-    "<ul style= 'width: 100%;padding-top: 15px;list-style: none;display: flex;justify-content: space-evenly;align-items: center;flex-wrap: wrap;'><li><a href='/'>Home</a></li>"+
+    "<ul style= 'width: 100%;padding-top: 15px;list-style: none;display: flex;justify-content: space-evenly;align-items: center;flex-wrap: wrap;'>"+
+    "<li><a style:'color: white;font-size: 20px;' href='/'>Home</a></li>"+
     "<li><a href='/guestbook'>Guestbook</a></li>"+""+
     "<li><a href='/newmessage'>New Message</a></li>"+""+
     "<li><a href='/ajaxmessage'>New Ajax Message</a></li></nav></header>"+
