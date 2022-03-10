@@ -61,7 +61,7 @@ app.post('/newmessage', function (req, res){
 
         var jsonStr = JSON.stringify(data);
 
-        fs.writeFile(__dirname + "/public/dataset.json", jsonStr, (err) => {
+        fs.writeFile(__dirname + "/dataset.json", jsonStr, (err) => {
             if (err) throw err;
             console.log("Data saved!")
         });
@@ -86,7 +86,7 @@ function addToGuestbook(req) {
   
     let jsonStr = JSON.stringify(data);
   
-    fs.writeFile("./data.json", jsonStr, (err) => {
+    fs.writeFile("./dataset.json", jsonStr, (err) => {
       if (err) throw err;
     });
   }
