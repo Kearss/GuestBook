@@ -114,10 +114,11 @@
         var date = new Date();
       // Tarkistetaan if/else-lauseella onko lomakkeet tyhjiä ja estetään tyhjien kenttien lähettäminen. //
         if (username == "" || country == "" || message == "") {
-          alert("Empy fields are not allowed!")
+          alert("Emtpy fields are not allowed!")
         } else {
       // Tuodaan CSS:n avulla piilotettu taulukko näkyviin //
         $("#gbdata").show();
+        alert("ajax has been sent")
       // Luodaan muuttuja, joka sisältää kaikkien lomakkeen kenttien tiedot. //
           var sendingData = {
             "username": username,
