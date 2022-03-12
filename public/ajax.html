@@ -105,34 +105,34 @@
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
-      // Luodaan on-click funktio, joka käynnistää scriptin // 
+      // creating click script for the ajax function// 
       $("#send").click(function () {
-      // Tallennetaan lomakkeen arvot muuttujiin sekä lisätään päivämäärä //
+      // saves the data and date to the file //
         var username = $("#username").val();
         var country = $("#country").val();
         var message = $("#message").val();
         var date = new Date();
-      // Tarkistetaan if/else-lauseella onko lomakkeet tyhjiä ja estetään tyhjien kenttien lähettäminen. //
+      // checks that the fields are not empty //
         if (username == "" || country == "" || message == "") {
           alert("Empty fields are not allowed!")
         } else {
-      // Tuodaan CSS:n avulla piilotettu taulukko näkyviin //
+          // creating alert to have some feedback on the ajax
         $("#gbdata").show();
         alert("ajax message has been sent to /guestbook")
-      // Luodaan muuttuja, joka sisältää kaikkien lomakkeen kenttien tiedot. //
+      // creating a variable that has all the data for sending  //
           var sendingData = {
             "username": username,
             "country": country,
             "message": message
             };
-      // Luodaan AJAX-kutsu, jolla lähetetään lomakkeen tiedot serverille. //
+      // Creating ajax call that sends the form to the server. //
         $.ajax({
             type: 'POST',
             url: '/ajaxmessage',
             data: sendingData,
             success: function (postData) {
               {
-      // Parsitaan serverin lähettämä JSON-muotoinen vastaus taulukkoon. //
+      // parsing the data into json so that it shows up in the table in /guestbook //
                 for (var i = 0; i < postData.length; i++) {
                 var username = postData[i].username;
                 var country = postData[i].country

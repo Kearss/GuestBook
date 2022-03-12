@@ -52,7 +52,7 @@ app.post('/newmessage', function (req, res){
     var data = require("./dataset.json");
     // creating if/else function to require the field to be filled 
     if (req.body.username == "" || req.body.country == "" || req.body.message == "") {
-        alert("Empty fields are not allowed!")
+        req.redirect("/newmessage")
     } else {
         // sends the data to dataset.json and adds it to the json file
         data.push({
