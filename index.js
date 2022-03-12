@@ -1,24 +1,26 @@
-// Määritellään palvelimelle portti.
+// finalized port
 const PORT = process.env.PORT || 3000;
 
-// Otetaan moduuleja käyttöön.
+// adding modules.
 var express = require("express");
 var app = express();
 var fs = require("fs");
 var bodyParser = require("body-parser");
 
-// Otetaan body-parser käyttöön express-sovelluksessa.
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
-
+// creating homepage route
 app.get('/', function (req, res){
     res.sendFile(__dirname +'/public/index.html');
 });
 
-
+//creating a /guestbook route
 app.get("/guestbook", (req, res) => {
     let data = require("./dataset.json");
+    //Adding bootstrap to js
     var bootstrap = "<link rel="+'stylesheet'+" href=https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css></link>"
+    // creating a table 
     let results ="<header style = 'background-color: rgba(29, 28, 28, 0.89);' >"+
     "<nav style ='display: flex;align-items: center;justify-content: center;'>"+
     "<ul style= 'width: 100%;padding-top: 15px;list-style: none;display: flex;justify-content: space-evenly;align-items: center;flex-wrap: wrap;'>"+
@@ -37,21 +39,22 @@ app.get("/guestbook", (req, res) => {
         '<td>' + data[i].message + '</td>' +
         '</tr>';
     }
+    //sending  table data
     results += "</table>";
     res.send(results);
   });
-
+// creating message route
 app.get('/newmessage', function (req, res){
     res.sendFile(__dirname +'/public/message.html');
 });
-
+// creating a message post route for message
 app.post('/newmessage', function (req, res){
     var data = require("./dataset.json");
-    // Tehdään if/else -lause, joka tarkistaa onko tyhjiä kenttiä. Jos yksikin kentistä on tyhjä, niin sivu latautuu uudelleen. //
+    // creating if/else function to require the field to be filled 
     if (req.body.username == "" || req.body.country == "" || req.body.message == "") {
-        res.redirect("/newmessage")
+        alert("Empty fields are not allowed!")
     } else {
-        // Lähetetään lomakkeed tiedot JSON-muodossa serverille ja tallennetaan ne guestbook.json tiedostoon. //
+        // sends the data to dataset.json and adds it to the json file
         data.push({
             "username": req.body.username,
             "country": req.body.country,
@@ -65,17 +68,15 @@ app.post('/newmessage', function (req, res){
             if (err) throw err;
             console.log("Data saved!")
         });
-        // Kun kaikki on valmista, ohjataan käyttäjä "/guestbook" sivulle. //
+        // redirect the user to the /guestbook
         res.redirect("/guestbook")
     }
 });
-// Luodaan web-palvelin.
-app.listen(PORT, () => {
-    console.log("Example app listening on port " + PORT);
-});
+// creating ajax message
 app.get('/ajaxmessage', function (req, res){
     res.sendFile(__dirname +'/public/ajax.html');
 });
+// creating ajax post 
 app.post("/ajaxmessage", function (req, res) {
     var data = require("./dataset.json");
     data.push({
@@ -89,17 +90,8 @@ app.post("/ajaxmessage", function (req, res) {
     res.sendFile(__dirname + "./dataset.json")
 })
 
-function addToGuestbook(req) {
-    let data = require("./dataset.json");
-    data.push({
-      "username": req.body.username,
-      "country": req.body.country,
-      "date": new Date(),
-      "message": req.body.message
-    });
-  
-    let jsonStr = JSON.stringify(data);
-    fs.writeFile("./dataset.json", jsonStr, (err) => {
-      if (err) throw err;
-    });
-  }
+
+  // creating server
+app.listen(PORT, () => {
+    console.log("Example app listening on port " + PORT);
+});
