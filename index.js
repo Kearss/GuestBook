@@ -84,6 +84,7 @@ app.post("/ajaxmessage", function (req, res) {
         "country": req.body.country,
         "date": new Date(),
         "message": req.body.message
+        
     });
     var jsonStr = JSON.stringify(data);
     fs.writeFileSync(__dirname + "./dataset.json", jsonStr);
