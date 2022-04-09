@@ -107,11 +107,13 @@
   <script>
       // creating click script for the ajax function// 
       $("#send").click(function () {
+        
       // saves the data and date to the file //
         var username = $("#username").val();
         var country = $("#country").val();
         var message = $("#message").val();
         var date = new Date();
+        $("#cform")[0].reset();
       // checks that the fields are not empty //
         if (username == "" || country == "" || message == "") {
           alert("Empty fields are not allowed!")
@@ -151,7 +153,7 @@
         })
       }
     })
-    $("#cform")[0].reset();
+    
   </script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
