@@ -107,7 +107,6 @@
   <script>
       // creating click script for the ajax function// 
       $("#send").click(function () {
-        form.reset();
       // saves the data and date to the file //
         var username = $("#username").val();
         var country = $("#country").val();
@@ -120,7 +119,7 @@
           // creating alert to have some feedback on the ajax
         $("#gbdata").show();
         alert("ajax message has been sent to /guestbook")
-
+        form.reset();
       // creating a variable that has all the data for sending  //
           var sendingData = {
             "username": username,
