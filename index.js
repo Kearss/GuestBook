@@ -89,6 +89,7 @@ app.post("/ajaxmessage", function (req, res) {
     var jsonStr = JSON.stringify(data);
     fs.writeFileSync(__dirname + "./dataset.json", jsonStr);
     res.sendFile(__dirname + "./dataset.json")
+    document.getElementById("cform").reset();
 })
 
 
